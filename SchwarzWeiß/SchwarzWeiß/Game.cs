@@ -47,7 +47,7 @@ namespace SchwarzWeiß
                     state.Initialize();
                     break;
                 case EGameState.Map1:
-                    state = new Map01();
+                    state = new Level1();
                     state.LoadContent();
                     state.Initialize();
                     break;

@@ -9,7 +9,7 @@ using SFML.System;
 
 namespace SchwarzWeiß
 {
-    class Map01 : GameState
+    class Level1 : GameState
     {
 
         RectangleShape background;

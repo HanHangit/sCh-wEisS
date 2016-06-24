@@ -58,7 +58,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameTime.cs" />
-    <Compile Include="Map01.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Level1.cs" />
     <Compile Include="MVec.cs" />
     <Compile Include="ObjectHandler.cs" />
     <Compile Include="Player1.cs" />
