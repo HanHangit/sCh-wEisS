@@ -26,17 +26,22 @@ namespace SchwarzWeiß
         Image image;
         Texture texture;
         Sprite sprite;
-        public static Vector2f position { get; private set; }
-        public static Vector2f size { get; private set; }
-        EPlayer mType;
 
         Text txt;
         Font font;
 
-        float speed;
+        EPlayer mType;
 
+        public static float sweatlevel { get; set; }
+        public static int capacity { get; set; }
+        public static float speed { get; set; }
+
+        public static Vector2f position { get; private set; }
+        public static Vector2f size { get; private set; }
+        
         public Player(EPlayer playernum, string str, Image img)
         {
+            sweatlevel = 0;
             image = new Image(img);
             texture = new Texture(image);
             sprite = new Sprite(texture);

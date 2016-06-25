@@ -55,17 +55,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="GameTime.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Level1.cs" />
     <Compile Include="MVec.cs" />
-    <Compile Include="ObjectHandler.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TitleScreen.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\PlayState\Game.cs" />
+    <Compile Include="States\PlayState\Items\Item.cs" />
+    <Compile Include="States\PlayState\Items\ItemHandler.cs" />
+    <Compile Include="States\PlayState\Items\Stern.cs" />
+    <Compile Include="States\PlayState\Items\Stock.cs" />
+    <Compile Include="States\PlayState\Items\Weapon.cs" />
+    <Compile Include="States\PlayState\Level1.cs" />
+    <Compile Include="States\PlayState\Map.cs" />
+    <Compile Include="States\PlayState\ObjectHandler.cs" />
+    <Compile Include="States\Program.cs" />
+    <Compile Include="States\TitleScreen.cs" />
+    <Compile Include="Utility\GameTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -74,6 +79,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Stein.png" />
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -114,6 +120,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="pictures\MeGustaSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stein.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
