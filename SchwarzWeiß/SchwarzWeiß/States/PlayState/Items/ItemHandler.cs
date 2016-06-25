@@ -13,10 +13,10 @@ namespace SchwarzWeiß
     {
         Clock clock;
         Clock clockWeapon;
-        int sterndu;
+    
         public ItemHandler()
         {
-            int sterndu = 0;
+        
             clock = new Clock();
             clockWeapon = new Clock();
             clock.Restart();
