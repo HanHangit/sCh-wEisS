@@ -51,7 +51,7 @@ namespace SchwarzWeiß
             txt = new Text(str, font);
             //playerShape.Position = new Vector2f(50, 50);
             //playerShape.FillColor = new Color(255, 255, 255);
-            speed = 1;
+            speed = 0.5f;
         }
 
         public EPlayer getType()
