@@ -11,6 +11,7 @@ namespace SchwarzWeiß
     {
         public static Player1 player1 = new Player1();
         public static Vector2u winSize;
+        public static Map map;
 
     }
 }
