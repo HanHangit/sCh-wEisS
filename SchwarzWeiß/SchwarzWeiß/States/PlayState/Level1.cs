@@ -37,8 +37,8 @@ namespace SchwarzWeiß
             itemhandler.Update();
 ObjectHandler.map.Update(win, t);
             ObjectHandler.player1.Update(win, t);
-itemhandler.Render(win);
-ObjectHandler.player2.Update(win, t);
+            itemhandler.Render(win);
+            ObjectHandler.player2.Update(win, t);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                 return EGameState.None;
             else
