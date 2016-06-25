@@ -9,14 +9,14 @@ using SFML.System;
 
 namespace SchwarzWeiß
 {
-    class Stock : Weapon
+    class Obst :  Weapon
     {
-        public Stock(float x, float y)
+        public Obst(float x, float y)
         {
             isAlive = true;
-            texture = new Texture("assets/Stock.png");
+            texture = new Texture("assets/Obst.png");
             sprite = new Sprite(texture);
-            Console.WriteLine("HAlloSTOCK");
+            Console.WriteLine("HAlloObst");
             sprite.Position = new Vector2f(x, y);
         }
         public override void Update()

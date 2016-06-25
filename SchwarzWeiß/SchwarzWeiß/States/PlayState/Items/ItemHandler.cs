@@ -12,11 +12,13 @@ namespace SchwarzWeiß
     public class ItemHandler
     {
         Clock clock;
+        Clock clockWeapon;
         int sterndu;
         public ItemHandler()
         {
             int sterndu = 0;
             clock = new Clock();
+            clockWeapon = new Clock();
             clock.Restart();
         }
         void Insert(Item item)
@@ -46,13 +48,36 @@ namespace SchwarzWeiß
             if(clock.ElapsedTime.AsSeconds() > 2)
             {
                 Random rnd = new Random();
+
                 int posX = rnd.Next(100, 1100);
                 int posY = rnd.Next(100, 600);
+
                 Stern p = new Stern(posX, posY);
                 ObjectHandler.itemlist.Add(p);
                 clock.Restart();
-                sterndu++;
-                Console.WriteLine(sterndu);
+
+              
+            }
+            if(clockWeapon.ElapsedTime.AsSeconds() > 4)
+            {
+                Random rnd = new Random();
+
+                int weaponchoose = rnd.Next(0, 2);
+                int posX = rnd.Next(100, 1100);
+                int posY = rnd.Next(100, 600);
+                if(weaponchoose == 1)
+                {
+                    Stock q = new Stock(posX, posY);
+                    ObjectHandler.itemlist.Add(q);
+                }
+                else
+                {
+                    Obst pq = new Obst(posX, posX);
+                    ObjectHandler.itemlist.Add(pq);
+
+                }
+               
+                clockWeapon.Restart();
             }
         }
     }

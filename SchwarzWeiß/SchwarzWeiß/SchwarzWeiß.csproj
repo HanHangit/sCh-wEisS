@@ -67,6 +67,7 @@
     <Compile Include="States\PlayState\Game.cs" />
     <Compile Include="States\PlayState\Items\Item.cs" />
     <Compile Include="States\PlayState\Items\ItemHandler.cs" />
+    <Compile Include="States\PlayState\Items\Obst.cs" />
     <Compile Include="States\PlayState\Items\Stern.cs" />
     <Compile Include="States\PlayState\Items\Stock.cs" />
     <Compile Include="States\PlayState\Items\Weapon.cs" />
@@ -84,7 +85,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Obst.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\Stein.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\Stock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="csfml-audio-2.dll">

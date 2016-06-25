@@ -26,7 +26,7 @@ namespace SchwarzWeiß
                 OnCollisionWithPlayer(1);
               
             }
-            else if(false)//Payer2Collision)
+            else if(Collision<Item,Player>.CheckColission(this, ObjectHandler.player2))//Payer2Collision)
             {
               
                 OnCollisionWithPlayer(2);
