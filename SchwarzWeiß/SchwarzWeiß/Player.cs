@@ -37,6 +37,8 @@ namespace SchwarzWeiß
         public int score { get; private set; }
         public float speed { get; set; }
         public int weaponnr { get; set; }
+        public int weapontime { get; set; }
+        //0 - keine; 1 - stock; 2 - other
 
         public Vector2f home;
         public Vector2f position { get; private set; }
@@ -44,6 +46,7 @@ namespace SchwarzWeiß
         
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
+            weapontime = 0;
             weaponnr = 0;
             score = 0;
             carry = 0;
@@ -65,9 +68,31 @@ namespace SchwarzWeiß
 
         public Boolean PlayerToPlayerCollision()
         {
-            if(Collision<Player,Player>.CheckColission(ObjectHandler.player1,ObjectHandler.player2))
+            Player p1 = ObjectHandler.player1;
+            Player p2 = ObjectHandler.player2;
+            if(Collision<Player,Player>.CheckColission(p1,p2))
             {
-                
+                if (p1.weaponnr == 1 && p2.weaponnr == 1)
+                {
+                    Console.WriteLine("both loose");
+                    p1.weaponnr = 0;
+                    p2.weaponnr = 0;
+
+                }
+                else if (ObjectHandler.player1.weaponnr == 1)
+                {
+                    Console.WriteLine("p1wins");
+                    p2.carry = 0;
+                    p2.sprite.Position = p2.home;
+
+                }
+                else if (ObjectHandler.player2.weaponnr == 1)
+                {
+                    Console.WriteLine("p2wins");
+                    p1.carry = 0;
+                    p1.sprite.Position = p1.home;
+
+                }
                 return true;
             }
             return false;
@@ -75,7 +100,7 @@ namespace SchwarzWeiß
 
         public void PlayerToHomeCollision()
         {
-            if (Collision<Player, Player>.CheckCollision(position, size, home, new Vector2u(15,15)))
+            if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15,15)))
             {
               
                 score += carry;
@@ -135,13 +160,8 @@ namespace SchwarzWeiß
 
         public void Update(RenderWindow win, GameTime gTime)
         {
-            
             win.Draw(sprite);
-            if (!PlayerToPlayerCollision())
-            {
-                
-                Move(gTime);
-            }
+            Move(gTime);
             PlayerToHomeCollision();
             KeyboardInput();
             PlayerToPlayerCollision();
