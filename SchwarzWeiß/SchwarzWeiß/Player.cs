@@ -19,8 +19,7 @@ namespace SchwarzWeiß
 
     class Player
     {
-
-
+        
         Vector2f moveDirection;
         //RectangleShape playerShape = new RectangleShape(new Vector2f(11, 11));
         Image image;
@@ -36,23 +35,44 @@ namespace SchwarzWeiß
         public int capacity { get; set; }
         public int carry { get; set; }
         public float speed { get; set; }
-       
+
+        public Vector2f home;
         public Vector2f position { get; private set; }
         public Vector2f size { get; private set; }
         
-        public Player(EPlayer playernum, string str, Image img)
+        public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
             sweatlevel = 0;
             image = new Image(img);
             texture = new Texture(image);
             sprite = new Sprite(texture);
-            sprite.Position = new Vector2f((ObjectHandler.winSize.X)/2, (ObjectHandler.winSize.Y)/2);
+            sprite.Position = new Vector2f(pos.X,pos.Y);
+            home = sprite.Position;
             mType = playernum;
             font = new Font("arialbd.ttf");
             txt = new Text(str, font);
             //playerShape.Position = new Vector2f(50, 50);
             //playerShape.FillColor = new Color(255, 255, 255);
             speed = 0.5f;
+        }
+
+        public Boolean compare(Vector2f p1pos, Vector2f p2pos)
+        {
+            Vector2f vec = p1pos - p2pos;
+            double vecLength = Math.Sqrt(vec.X * vec.X + vec.Y * vec.Y);
+            if ( vecLength < 15)
+                return true;
+            else return false;
+        }
+
+        public Boolean PlayerToPlayerCollision()
+        {
+            if(compare(ObjectHandler.player1.position, ObjectHandler.player2.position))
+            {
+                Console.WriteLine("chrisistcool");
+                return true;
+            }
+            return false;
         }
 
         public EPlayer getType()
@@ -107,11 +127,10 @@ namespace SchwarzWeiß
 
         public void Update(RenderWindow win, GameTime gTime)
         {
-
             win.Draw(sprite);
-
             KeyboardInput();
             Move(gTime);
+            PlayerToPlayerCollision();
 
             DrawHud(win);
             //win.Draw(playerShape);

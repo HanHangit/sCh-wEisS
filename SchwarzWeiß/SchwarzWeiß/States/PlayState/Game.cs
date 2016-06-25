@@ -18,6 +18,7 @@ namespace SchwarzWeiß
         public Game()
         {
             window = new RenderWindow(new VideoMode(1280, 720), "Schweisausbruch");
+            Console.WriteLine(window.Size.ToString());
             ObjectHandler.winSize = window.Size;
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
             window.SetFramerateLimit(120);

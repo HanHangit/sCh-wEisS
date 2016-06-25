@@ -35,7 +35,7 @@ namespace SchwarzWeiß
         {
             //win.Draw(background);
             itemhandler.Update();
-ObjectHandler.map.Update(win, t);
+            ObjectHandler.map.Update(win, t);
             ObjectHandler.player1.Update(win, t);
             itemhandler.Render(win);
             ObjectHandler.player2.Update(win, t);
