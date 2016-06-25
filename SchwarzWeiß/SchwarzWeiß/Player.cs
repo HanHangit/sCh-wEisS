@@ -36,6 +36,7 @@ namespace SchwarzWeiß
         public int carry { get; set; }
         public int score { get; private set; }
         public float speed { get; set; }
+        public int weaponnr { get; set; }
 
         public Vector2f home;
         public Vector2f position { get; private set; }
@@ -43,6 +44,7 @@ namespace SchwarzWeiß
         
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
+            weaponnr = 0;
             score = 0;
             carry = 0;
             capacity = 6;
