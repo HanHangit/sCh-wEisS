@@ -158,8 +158,30 @@ namespace SchwarzWeiß
 
         }
 
+        public void CheckWeaponForImage()
+        {
+            if (ObjectHandler.player1.weaponnr != 0)
+            {
+                if(ObjectHandler.player1.weaponnr == 1)
+                {
+                    ObjectHandler.player1.sprite.Texture = new Texture(new Image("pictures/lolsmallstick.png"));
+                }
+            }
+            else ObjectHandler.player1.sprite.Texture = new Texture(new Image("pictures/lolsmall.png"));
+
+            if (ObjectHandler.player2.weaponnr != 0)
+            {
+                if (ObjectHandler.player2.weaponnr == 1)
+                {
+                    ObjectHandler.player2.sprite.Texture = new Texture(new Image("pictures/megustasmallstick.png"));
+                }
+            }
+            else ObjectHandler.player2.sprite.Texture = new Texture(new Image("pictures/megustasmall.png"));
+        }
+
         public void Update(RenderWindow win, GameTime gTime)
         {
+            CheckWeaponForImage();
             win.Draw(sprite);
             Move(gTime);
             PlayerToHomeCollision();
