@@ -13,12 +13,14 @@ namespace SchwarzWeiß
     {
 
         RectangleShape background;
+        ItemHandler itemhandler;
 
         public void Initialize()
         {
             
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
-            background.FillColor = Color.Blue;
+            background.FillColor = Color.Green;
+            itemhandler = new ItemHandler();
 
             ObjectHandler.map = new Map();
 
@@ -32,9 +34,11 @@ namespace SchwarzWeiß
         public EGameState Update(RenderWindow win, GameTime t)
         {
             //win.Draw(background);
-            ObjectHandler.map.Update(win, t);
+            itemhandler.Update();
+ObjectHandler.map.Update(win, t);
             ObjectHandler.player1.Update(win, t);
-
+itemhandler.Render(win);
+ObjectHandler.player2.Update(win, t);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                 return EGameState.None;
             else
@@ -42,4 +46,5 @@ namespace SchwarzWeiß
         }
 
     }
+    
 }
