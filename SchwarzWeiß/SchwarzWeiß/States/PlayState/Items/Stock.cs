@@ -32,9 +32,19 @@ namespace SchwarzWeiß
         {
             if (id == 1) //Player1
             {
+                if(ObjectHandler.player1.weaponnr == 0)
+                {
+                    ObjectHandler.player1.weaponnr = 1;
+                    ObjectHandler.itemlist.Remove(this);
+                }
             }
             else //Player2
             {
+                if (ObjectHandler.player2.weaponnr == 0)
+                {
+                    ObjectHandler.player2.weaponnr = 1;
+                    ObjectHandler.itemlist.Remove(this);
+                }
 
             }
 
