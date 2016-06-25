@@ -34,8 +34,9 @@ namespace SchwarzWeiß
 
         public float sweatlevel { get; set; }
         public int capacity { get; set; }
+        public int carry { get; set; }
         public float speed { get; set; }
-
+       
         public Vector2f position { get; private set; }
         public Vector2f size { get; private set; }
         
