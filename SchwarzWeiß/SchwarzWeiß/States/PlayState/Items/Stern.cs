@@ -29,9 +29,19 @@ namespace SchwarzWeiß
             PlayerCollision();
 
         }
-        protected override void OnCollisionWithPlayer()
+        protected override void OnCollisionWithPlayer(int id)
         {
+            if(id == 1)
+            {
+                
+                //Todo Player1 bekommt TrageLvl +1
+                //ToDo Player1 Speed--
+                //Todo Player1 SchweizLvl++
+            }
+            else if(id == 2)
+            {
 
+            }
         }
         public  override void HandleEvents()
         {

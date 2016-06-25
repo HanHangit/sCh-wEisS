@@ -18,14 +18,23 @@ namespace SchwarzWeiß
         public abstract void Render(RenderWindow window);
         public void PlayerCollision()
         {
+            
             //ToDo Collision
-            if (true)
+            if (true) //Player1Collision
             {
-                OnCollisionWithPlayer();
+             
+                OnCollisionWithPlayer(1);
+              
+            }
+            else if(false)//Payer2Collision)
+            {
+              
+                OnCollisionWithPlayer(2);
+              
             }
         }
-        protected abstract void OnCollisionWithPlayer();
-
+        protected abstract void OnCollisionWithPlayer(int id);
+      
         public bool isAlive {get; set;}
         protected Sprite sprite;
         protected Texture texture;
