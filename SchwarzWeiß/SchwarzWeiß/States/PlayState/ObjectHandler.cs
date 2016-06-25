@@ -18,6 +18,8 @@ namespace SchwarzWeiß
         public static Vector2u winSize;
         //public static Stern sterni = new Stern();
         public static List<Item> itemlist = new List<Item>();
+        //Map
+        public static Map map;
 
     }
 }
