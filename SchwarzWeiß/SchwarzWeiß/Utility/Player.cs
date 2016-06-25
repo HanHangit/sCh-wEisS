@@ -44,8 +44,10 @@ namespace SchwarzWeiß
         public Vector2f position { get; private set; }
         public Vector2u size { get; private set; }
         
+        
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
+            
             weapontime = 0;
             weaponnr = 0;
             score = 0;
@@ -74,21 +76,21 @@ namespace SchwarzWeiß
             {
                 if (p1.weaponnr == 1 && p2.weaponnr == 1)
                 {
-                    Console.WriteLine("both loose");
+                  
                     p1.weaponnr = 0;
                     p2.weaponnr = 0;
 
                 }
                 else if (ObjectHandler.player1.weaponnr == 1)
                 {
-                    Console.WriteLine("p1wins");
+                 
                     p2.carry = 0;
                     p2.sprite.Position = p2.home;
 
                 }
                 else if (ObjectHandler.player2.weaponnr == 1)
                 {
-                    Console.WriteLine("p2wins");
+                
                     p1.carry = 0;
                     p1.sprite.Position = p1.home;
 
@@ -102,8 +104,8 @@ namespace SchwarzWeiß
         {
             if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15,15)))
             {
-                if(mType == EPlayer.Player1)Console.WriteLine( "Player 1 Score: " + score);
-                if(mType == EPlayer.Player2) Console.WriteLine("Player 2 Score: " + score);
+                if(mType == EPlayer.Player1)
+                if(mType == EPlayer.Player2) 
                 score += carry;
                 carry = 0;
             }
@@ -182,27 +184,49 @@ namespace SchwarzWeiß
 
         public void CheckScore()
         {
-            if (Level1.highscore == ObjectHandler.player1.score)
-                Console.WriteLine("PLAYER 1 WINS !");
-            if (Level1.highscore == ObjectHandler.player2.score)
-                Console.WriteLine("PLAYER 2 WINS !");
+            //if (Level1.highscore == ObjectHandler.player1.score)
+            // 
+            //if (Level1.highscore == ObjectHandler.player2.score)
+               
         }
 
         public void Update(RenderWindow win, GameTime gTime)
         {
             CheckScore();
             CheckWeaponForImage();
-            win.Draw(sprite);
+            
             Move(gTime);
             PlayerToHomeCollision();
             KeyboardInput();
             PlayerToPlayerCollision();
-
+            bombHasBeenPlanted(win);
+            win.Draw(sprite);
             DrawHud(win);
             //win.Draw(playerShape);
 
             //position = playerShape.Position;
             //size = playerShape.Size;
+
+        }
+
+        void bombHasBeenPlanted(RenderWindow win)
+        {
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.LControl) && weaponnr == 2)
+            {
+                Traps p = new Traps(sprite.Position);
+                ObjectHandler.traplist.Add(p);
+                weaponnr = 0;
+            }
+            for (int it = 0; it < ObjectHandler.traplist.Count; it++)
+            {
+                ObjectHandler.traplist[it].Update();
+                ObjectHandler.traplist[it].Render(win);
+                if (!(ObjectHandler.traplist[it].isAlive))
+                {
+                    ObjectHandler.traplist.RemoveAt(it);
+                }
+            }
 
         }
 
