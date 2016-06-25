@@ -80,6 +80,15 @@ namespace SchwarzWeiß
 
         }
 
+        public bool walkable(Vector2f position)
+        {
+            Vector2u pos = (Vector2u)position / tilesize;
+            if (intMap[pos.X, pos.Y] != EMapTile.Floor)
+                return false;
+            else
+                return true;
+        }
+
         public void Update(RenderWindow win, GameTime gTime)
         {
             win.Draw(sprite);
