@@ -15,7 +15,7 @@ namespace SchwarzWeiß
         
         public Stern(float x, float y) { 
             isAlive = true;
-            texture = new Texture("Stein.png");
+            texture = new Texture("assets/Stein.png");
             sprite = new Sprite(texture);
             Console.WriteLine("HALLOWELT");
             sprite.Position = new Vector2f(x,y);
