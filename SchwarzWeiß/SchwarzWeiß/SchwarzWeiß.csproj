@@ -33,17 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\..\..\..\VS2015C\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
+    <Reference Include="sfmlnet-audio-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\..\..\..\VS2015C\SFML.Net-2.2\lib\sfmlnet-graphics-2.dll</HintPath>
+    <Reference Include="sfmlnet-graphics-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-system-2">
-      <HintPath>..\..\..\..\VS2015C\SFML.Net-2.2\lib\sfmlnet-system-2.dll</HintPath>
+    <Reference Include="sfmlnet-system-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-system-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-window-2">
-      <HintPath>..\..\..\..\VS2015C\SFML.Net-2.2\lib\sfmlnet-window-2.dll</HintPath>
+    <Reference Include="sfmlnet-window-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,17 +59,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="GameTime.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Level1.cs" />
     <Compile Include="MVec.cs" />
-    <Compile Include="ObjectHandler.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TitleScreen.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\PlayState\Game.cs" />
+    <Compile Include="States\PlayState\Items\Item.cs" />
+    <Compile Include="States\PlayState\Items\ItemHandler.cs" />
+    <Compile Include="States\PlayState\Items\Stern.cs" />
+    <Compile Include="States\PlayState\Items\Stock.cs" />
+    <Compile Include="States\PlayState\Items\Weapon.cs" />
+    <Compile Include="States\PlayState\Level1.cs" />
+    <Compile Include="States\PlayState\Map.cs" />
+    <Compile Include="States\PlayState\ObjectHandler.cs" />
+    <Compile Include="States\Program.cs" />
+    <Compile Include="States\TitleScreen.cs" />
+    <Compile Include="Utility\GameTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -74,6 +83,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Stein.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
