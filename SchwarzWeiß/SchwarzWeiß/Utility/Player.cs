@@ -118,10 +118,7 @@ namespace SchwarzWeiß
 
         void Move(GameTime gTime)
         {
-            if ((sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds).X > 0 
-                && (sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds).Y > 0
-                    && (sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds).X < ObjectHandler.winSize.X - 33
-                        && (sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds).Y < ObjectHandler.winSize.Y - 33)
+            if (ObjectHandler.map.walkable(ObjectHandler.player1.sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds))
             {
                 //playerShape.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
                 sprite.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
@@ -143,8 +140,7 @@ namespace SchwarzWeiß
                 if (Keyboard.IsKeyPressed(Keyboard.Key.S))
                     moveDirection += new Vector2f(0, 1);
 
-                if(ObjectHandler.map.walkable(ObjectHandler.player1.sprite.Position+moveDirection))
-                    moveDirection = MVec.normalize(moveDirection);
+                moveDirection = MVec.normalize(moveDirection);
             }
             if (mType == EPlayer.Player2)
             {
