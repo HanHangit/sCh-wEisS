@@ -32,12 +32,12 @@ namespace SchwarzWeiß
 
         EPlayer mType;
 
-        public static float sweatlevel { get; set; }
-        public static int capacity { get; set; }
-        public static float speed { get; set; }
+        public float sweatlevel { get; set; }
+        public int capacity { get; set; }
+        public float speed { get; set; }
 
-        public static Vector2f position { get; private set; }
-        public static Vector2f size { get; private set; }
+        public Vector2f position { get; private set; }
+        public Vector2f size { get; private set; }
         
         public Player(EPlayer playernum, string str, Image img)
         {
