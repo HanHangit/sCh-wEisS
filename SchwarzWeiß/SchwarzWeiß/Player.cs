@@ -102,7 +102,7 @@ namespace SchwarzWeiß
         {
             if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15,15)))
             {
-                Console.WriteLine(carry + "|" + score);
+              
                 score += carry;
                 carry = 0;
             }
