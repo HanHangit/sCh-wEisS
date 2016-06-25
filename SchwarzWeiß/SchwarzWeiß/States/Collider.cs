@@ -30,6 +30,24 @@ namespace SchwarzWeiß
             Vector2f pos2 = obj2.getPosition();
             Vector2u size2 = obj2.getSize();
 
+            return CheckCollision(pos1, size1, pos2, size2);
+
+        }
+
+        public static bool CheckCollision(T obj1, Vector2f move1, U obj2, Vector2f move2)
+        {
+            Vector2f pos1 = obj1.getPosition() + move1;
+            Vector2u size1 = obj1.getSize();
+            Vector2f pos2 = obj2.getPosition() + move2;
+            Vector2u size2 = obj2.getSize();
+
+            return CheckCollision(pos1, size1, pos2, size2);
+
+        }
+
+        public static bool CheckCollision(Vector2f pos1, Vector2u size1, Vector2f pos2, Vector2u size2)
+        {
+
             if (pos1.X < pos2.X + size2.X
     && pos1.X + size1.X > pos2.X
     && pos1.Y < pos2.Y + size2.Y
@@ -37,7 +55,6 @@ namespace SchwarzWeiß
                 return true;
             else
                 return false;
-
         }
     }
 }
