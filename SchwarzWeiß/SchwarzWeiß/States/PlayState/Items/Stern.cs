@@ -33,7 +33,7 @@ namespace SchwarzWeiß
         {
             if(id == 1)
             {
-                
+             
                 //Todo Player1 bekommt TrageLvl +1
                 //ToDo Player1 Speed--
                 //Todo Player1 SchweizLvl++
