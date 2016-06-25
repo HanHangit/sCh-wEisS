@@ -102,7 +102,8 @@ namespace SchwarzWeiß
         {
             if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15,15)))
             {
-              
+                if(mType == EPlayer.Player1)Console.WriteLine( "Player 1 Score: " + score);
+                if(mType == EPlayer.Player2) Console.WriteLine("Player 2 Score: " + score);
                 score += carry;
                 carry = 0;
             }
@@ -179,8 +180,17 @@ namespace SchwarzWeiß
             else ObjectHandler.player2.sprite.Texture = new Texture(new Image("pictures/megustasmall.png"));
         }
 
+        public void CheckScore()
+        {
+            if (Level1.highscore == ObjectHandler.player1.score)
+                Console.WriteLine("PLAYER 1 WINS !");
+            if (Level1.highscore == ObjectHandler.player2.score)
+                Console.WriteLine("PLAYER 2 WINS !");
+        }
+
         public void Update(RenderWindow win, GameTime gTime)
         {
+            CheckScore();
             CheckWeaponForImage();
             win.Draw(sprite);
             Move(gTime);

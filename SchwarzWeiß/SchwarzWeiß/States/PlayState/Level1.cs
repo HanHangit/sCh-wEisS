@@ -14,10 +14,11 @@ namespace SchwarzWeiß
 
         RectangleShape background;
         ItemHandler itemhandler;
+        public static int highscore;
 
         public void Initialize()
         {
-            
+            highscore = 10;
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
             background.FillColor = Color.Green;
             itemhandler = new ItemHandler();
