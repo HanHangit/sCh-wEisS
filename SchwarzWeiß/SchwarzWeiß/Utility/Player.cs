@@ -141,7 +141,8 @@ namespace SchwarzWeiß
                 if (Keyboard.IsKeyPressed(Keyboard.Key.S))
                     moveDirection += new Vector2f(0, 1);
 
-                moveDirection = MVec.normalize(moveDirection);
+                if(ObjectHandler.map.walkable(ObjectHandler.player1.sprite.Position+moveDirection))
+                    moveDirection = MVec.normalize(moveDirection);
             }
             if (mType == EPlayer.Player2)
             {
