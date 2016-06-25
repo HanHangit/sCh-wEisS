@@ -33,14 +33,22 @@ namespace SchwarzWeiß
         {
             if(id == 1)
             {
-             
-                //Todo Player1 bekommt TrageLvl +1
-                //ToDo Player1 Speed--
-                //Todo Player1 SchweizLvl++
-            }
-            else if(id == 2)
-            {
 
+                Console.WriteLine("Capacity " + ObjectHandler.player1.capacity);
+                Console.WriteLine("Carry " + ObjectHandler.player1.carry);
+
+                if (!(ObjectHandler.player1.carry == ObjectHandler.player1.capacity)) {
+                    ObjectHandler.player1.carry++;
+                    //ToDO Check obs Funktioniert
+                    ObjectHandler.itemlist.Remove(this);
+                }
+                
+            }
+            else if (!(ObjectHandler.player2.carry == ObjectHandler.player2.capacity))
+            {
+                ObjectHandler.player2.carry++;
+                //ToDO Check obs Funktioniert
+                ObjectHandler.itemlist.Remove(this);
             }
         }
         public  override void HandleEvents()

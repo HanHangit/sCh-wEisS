@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,14 @@ namespace SchwarzWeiß
 
         EMapTile[,] intMap;
         Vector2u size;
-        int tilesize;
+        uint tilesize;
         Color[,] spriteMap;
         Sprite sprite;
 
         public Map()
         {
-            tilesize = 32;
-            size = ObjectHandler.winSize / 8;
+            tilesize = 24;
+            size = ObjectHandler.winSize / tilesize;
             intMap = new EMapTile[size.X, size.Y];
             spriteMap = new Color[size.X, size.Y];
             Console.WriteLine("Constructor");
@@ -37,17 +38,24 @@ namespace SchwarzWeiß
 
         void generateMap()
         {
-            float chance = 0.2f;
+            float chance = 0.05f;
             Random rnd = new Random();
 
             for(int i = 0; i < size.X; ++i)
                 for(int j = 0; j < size.Y; ++j)
             {
-                    if (rnd.NextDouble() < chance)
+                    if (i == 0 || j == 0 || i == size.X - 1 || j == size.Y - 1)
                         intMap[i, j] = EMapTile.Wall;
+                    else if (rnd.NextDouble() < chance)
+                    {
+                        intMap[i, j] = EMapTile.Wall;
+
+                    }
                     else
                         intMap[i, j] = EMapTile.Floor;
             }
+
+            
 
             buildMap();
 
@@ -75,6 +83,8 @@ namespace SchwarzWeiß
         public void Update(RenderWindow win, GameTime gTime)
         {
             win.Draw(sprite);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.F5))
+                generateMap();
         }
 
     }

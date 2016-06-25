@@ -17,7 +17,7 @@ namespace SchwarzWeiß
         Player2
     }
 
-    class Player
+    class Player : Collider
     {
         
         Vector2f moveDirection;
@@ -42,6 +42,8 @@ namespace SchwarzWeiß
         
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
+            carry = 0;
+            capacity = 6;
             sweatlevel = 0;
             image = new Image(img);
             texture = new Texture(image);
@@ -144,6 +146,14 @@ namespace SchwarzWeiß
         {
         }
 
+        public Vector2f getPosition()
+        {
+            return sprite.Position;
+        }
 
+        public Vector2u getSize()
+        {
+            return sprite.Texture.Size;
+        }
     }
 }

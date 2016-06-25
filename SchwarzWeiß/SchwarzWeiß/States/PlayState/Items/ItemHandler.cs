@@ -27,10 +27,10 @@ namespace SchwarzWeiß
         public void Update()
         {
             Spawn();
-            foreach (Item it in ObjectHandler.itemlist)
+            for(int it = 0; it < ObjectHandler.itemlist.Count; it++)
             {
+                ObjectHandler.itemlist[it].Update();
                
-                it.Update();
             }
         }
         public void Render(RenderWindow win)
@@ -52,6 +52,7 @@ namespace SchwarzWeiß
                 ObjectHandler.itemlist.Add(p);
                 clock.Restart();
                 sterndu++;
+                Console.WriteLine(sterndu);
             }
         }
     }
