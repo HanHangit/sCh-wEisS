@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchwarzWeiß.States.PlayState.Items
+namespace SchwarzWeiß
 {
     class Weapon
     {

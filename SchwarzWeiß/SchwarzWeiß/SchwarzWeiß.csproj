@@ -58,12 +58,13 @@
     <Compile Include="States\PlayState\Game.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\PlayState\Items\Item.cs" />
+    <Compile Include="States\PlayState\Items\ItemHandler.cs" />
     <Compile Include="States\PlayState\Items\Stern.cs" />
     <Compile Include="States\PlayState\Items\Stock.cs" />
     <Compile Include="States\PlayState\Items\Weapon.cs" />
     <Compile Include="Utility\GameTime.cs" />
     <Compile Include="States\PlayState\Map.cs" />
-    <Compile Include="States\Level1.cs" />
+    <Compile Include="States\PlayState\Level1.cs" />
     <Compile Include="MVec.cs" />
     <Compile Include="States\PlayState\ObjectHandler.cs" />
     <Compile Include="States\PlayState\Player\Player1.cs" />
@@ -99,6 +100,9 @@
     <Content Include="openal32.dll" />
     <Content Include="OpenTK.Compatibility.dll" />
     <Content Include="OpenTK.dll" />
+    <Content Include="Stein.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
