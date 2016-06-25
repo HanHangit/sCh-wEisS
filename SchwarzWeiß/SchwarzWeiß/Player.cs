@@ -67,7 +67,7 @@ namespace SchwarzWeiß
         {
             if(Collision<Player,Player>.CheckColission(ObjectHandler.player1,ObjectHandler.player2))
             {
-                Console.WriteLine("chrisistcool");
+                
                 return true;
             }
             return false;
@@ -77,7 +77,7 @@ namespace SchwarzWeiß
         {
             if (Collision<Player, Player>.CheckCollision(position, size, home, new Vector2u(15,15)))
             {
-                Console.WriteLine(carry + "|" + score);
+              
                 score += carry;
                 carry = 0;
             }
@@ -135,7 +135,7 @@ namespace SchwarzWeiß
 
         public void Update(RenderWindow win, GameTime gTime)
         {
-            Console.WriteLine(home.ToString());
+            
             win.Draw(sprite);
             if (!PlayerToPlayerCollision())
             {

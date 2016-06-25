@@ -11,8 +11,13 @@ namespace SchwarzWeiß
 {
     class Stock : Weapon
     {
+        Clock clockPlayer1;
+        Clock clockPlayer2;
         public Stock(float x, float y)
         {
+            clockPlayer1 = new Clock();
+            clockPlayer2 = new Clock();
+            
             isAlive = true;
             texture = new Texture("assets/Stock.png");
             sprite = new Sprite(texture);
@@ -26,6 +31,18 @@ namespace SchwarzWeiß
             // Collision -> 20 Punkte
 
             PlayerCollision();
+            if(clockPlayer1.ElapsedTime.AsSeconds() > 15)
+            {
+                ObjectHandler.player1.weaponnr = 0;
+                clockPlayer1.Restart();
+                Console.WriteLine(ObjectHandler.player1.weaponnr);
+            }
+            if(clockPlayer2.ElapsedTime.AsSeconds() > 15)
+            {
+                ObjectHandler.player2.weaponnr = 0;
+                clockPlayer2.Restart();
+                Console.WriteLine(ObjectHandler.player2.weaponnr);
+            }
 
         }
         protected override void OnCollisionWithPlayer(int id)
@@ -36,6 +53,7 @@ namespace SchwarzWeiß
                 {
                     ObjectHandler.player1.weaponnr = 1;
                     ObjectHandler.itemlist.Remove(this);
+                    clockPlayer1.Restart();
                 }
             }
             else //Player2
@@ -44,6 +62,7 @@ namespace SchwarzWeiß
                 {
                     ObjectHandler.player2.weaponnr = 1;
                     ObjectHandler.itemlist.Remove(this);
+                    clockPlayer2.Restart();
                 }
 
             }
