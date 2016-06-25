@@ -63,7 +63,6 @@
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\Collider.cs" />
-    <Compile Include="States\Collision.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\PlayState\Game.cs" />
     <Compile Include="States\PlayState\Items\Item.cs" />

@@ -10,7 +10,7 @@ namespace SchwarzWeiß
     interface Collider
     {
         Vector2f getPosition();
-        Vector2f getSize();
+        Vector2u getSize();
     }
 
     class Collision<T, U>
@@ -26,9 +26,9 @@ namespace SchwarzWeiß
         public static bool CheckColission(T obj1, U obj2)
         {
             Vector2f pos1 = obj1.getPosition();
-            Vector2f size1 = obj1.getSize();
+            Vector2u size1 = obj1.getSize();
             Vector2f pos2 = obj2.getPosition();
-            Vector2f size2 = obj2.getSize();
+            Vector2u size2 = obj2.getSize();
 
             if (pos1.X < pos2.X + size2.X
     && pos1.X + size1.X > pos2.X
