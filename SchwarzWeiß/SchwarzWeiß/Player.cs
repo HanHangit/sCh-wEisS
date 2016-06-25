@@ -34,14 +34,16 @@ namespace SchwarzWeiß
         public float sweatlevel { get; set; }
         public int capacity { get; set; }
         public int carry { get; set; }
+        public int score { get; private set; }
         public float speed { get; set; }
 
         public Vector2f home;
         public Vector2f position { get; private set; }
-        public Vector2f size { get; private set; }
+        public Vector2u size { get; private set; }
         
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
+            score = 0;
             carry = 0;
             capacity = 6;
             sweatlevel = 0;
@@ -49,6 +51,7 @@ namespace SchwarzWeiß
             texture = new Texture(image);
             sprite = new Sprite(texture);
             sprite.Position = new Vector2f(pos.X,pos.Y);
+            size = sprite.Texture.Size;
             home = sprite.Position;
             mType = playernum;
             font = new Font("arialbd.ttf");
@@ -58,23 +61,24 @@ namespace SchwarzWeiß
             speed = 0.5f;
         }
 
-        public Boolean compare(Vector2f p1pos, Vector2f p2pos)
-        {
-            Vector2f vec = p1pos - p2pos;
-            double vecLength = Math.Sqrt(vec.X * vec.X + vec.Y * vec.Y);
-            if ( vecLength < 15)
-                return true;
-            else return false;
-        }
-
         public Boolean PlayerToPlayerCollision()
         {
-            if(compare(ObjectHandler.player1.position, ObjectHandler.player2.position))
+            if(Collision<Player,Player>.CheckColission(ObjectHandler.player1,ObjectHandler.player2))
             {
                 Console.WriteLine("chrisistcool");
                 return true;
             }
             return false;
+        }
+
+        public void PlayerToHomeCollision()
+        {
+            if (Collision<Player, Player>.CheckCollision(position, size, home, new Vector2u(15,15)))
+            {
+                Console.WriteLine(carry + "|" + score);
+                score += carry;
+                carry = 0;
+            }
         }
 
         public EPlayer getType()
@@ -129,9 +133,15 @@ namespace SchwarzWeiß
 
         public void Update(RenderWindow win, GameTime gTime)
         {
+            Console.WriteLine(home.ToString());
             win.Draw(sprite);
+            if (!PlayerToPlayerCollision())
+            {
+                
+                Move(gTime);
+            }
+            PlayerToHomeCollision();
             KeyboardInput();
-            Move(gTime);
             PlayerToPlayerCollision();
 
             DrawHud(win);
