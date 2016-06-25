@@ -18,7 +18,7 @@ namespace SchwarzWeiß
         {
             
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
-            background.FillColor = Color.Blue;
+            background.FillColor = Color.Green;
 
         }
 
@@ -32,6 +32,7 @@ namespace SchwarzWeiß
             win.Draw(background);
 
             ObjectHandler.player1.Update(win, t);
+            ObjectHandler.player2.Update(win, t);
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                 return EGameState.None;
