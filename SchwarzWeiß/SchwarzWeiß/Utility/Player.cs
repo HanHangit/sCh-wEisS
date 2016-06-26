@@ -11,7 +11,7 @@ using SFML.Audio;
 namespace SchwarzWeiß
 {
 
-   enum EPlayer
+    enum EPlayer
     {
         Player1,
         Player2
@@ -41,11 +41,11 @@ namespace SchwarzWeiß
         public Vector2f home;
         public Vector2f position { get; private set; }
         public Vector2u size { get; private set; }
-        
-        
+
+
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
-            
+
             weapontime = 0;
             weaponnr = 0;
             score = 0;
@@ -55,7 +55,7 @@ namespace SchwarzWeiß
             image = new Image(img);
             texture = new Texture(image);
             sprite = new Sprite(texture);
-            sprite.Position = new Vector2f(pos.X,pos.Y);
+            sprite.Position = new Vector2f(pos.X, pos.Y);
             size = sprite.Texture.Size;
             home = sprite.Position;
             mType = playernum;
@@ -68,25 +68,25 @@ namespace SchwarzWeiß
         {
             Player p1 = ObjectHandler.player1;
             Player p2 = ObjectHandler.player2;
-            if(Collision<Player,Player>.CheckColission(p1,p2))
+            if (Collision<Player, Player>.CheckColission(p1, p2))
             {
                 if (p1.weaponnr == 1 && p2.weaponnr == 1)
                 {
-                  
+
                     p1.weaponnr = 0;
                     p2.weaponnr = 0;
 
                 }
                 else if (ObjectHandler.player1.weaponnr == 1)
                 {
-                 
+
                     p2.carry = 0;
                     p2.sprite.Position = p2.home;
 
                 }
                 else if (ObjectHandler.player2.weaponnr == 1)
                 {
-                
+
                     p1.carry = 0;
                     p1.sprite.Position = p1.home;
 
@@ -98,11 +98,11 @@ namespace SchwarzWeiß
 
         public void PlayerToHomeCollision()
         {
-            if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15,15)))
+            if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15, 15)))
             {
-                if(mType == EPlayer.Player1)
-                if(mType == EPlayer.Player2) 
-                score += carry;
+                if (mType == EPlayer.Player1)
+                    if (mType == EPlayer.Player2)
+                        score += carry;
                 carry = 0;
             }
         }
@@ -114,7 +114,40 @@ namespace SchwarzWeiß
 
         void Move(GameTime gTime)
         {
-            if (ObjectHandler.map.walkable(ObjectHandler.player1.sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds))
+
+            Vector2f nextMove = moveDirection * speed * gTime.Ellapsed.Milliseconds;
+            Vector2f leftTop = sprite.Position + nextMove;
+            Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove;
+            Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove;
+            Vector2f RightBottom = sprite.Position + (Vector2f)sprite.Texture.Size + nextMove;
+
+            /*
+            if(!ObjectHandler.map.walkable(leftTop) && !ObjectHandler.map.walkable(rightTop))
+            {
+                moveDirection.Y = 0;
+            }
+
+            if (!ObjectHandler.map.walkable(leftTop) && !ObjectHandler.map.walkable(leftBottom))
+            {
+                moveDirection.X = 0;
+            }
+
+            if (!ObjectHandler.map.walkable(leftBottom) && !ObjectHandler.map.walkable(RightBottom))
+            {
+                moveDirection.Y = 0;
+            }
+
+            if (!ObjectHandler.map.walkable(RightBottom) && !ObjectHandler.map.walkable(rightTop))
+            {
+                moveDirection.X = 0;
+            }
+            */
+
+
+            if(ObjectHandler.map.walkable(leftTop)
+                && ObjectHandler.map.walkable(leftBottom)
+                && ObjectHandler.map.walkable(rightTop)
+                && ObjectHandler.map.walkable(RightBottom))
             {
                 sprite.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
             }
@@ -162,7 +195,7 @@ namespace SchwarzWeiß
         {
             if (ObjectHandler.player1.weaponnr != 0)
             {
-                if(ObjectHandler.player1.weaponnr == 1)
+                if (ObjectHandler.player1.weaponnr == 1)
                 {
                     ObjectHandler.player1.sprite.Texture = new Texture(new Image("pictures/lolsmallstick.png"));
                 }
@@ -184,14 +217,14 @@ namespace SchwarzWeiß
             //if (Level1.highscore == ObjectHandler.player1.score)
             // 
             //if (Level1.highscore == ObjectHandler.player2.score)
-               
+
         }
 
         public void Update(RenderWindow win, GameTime gTime)
         {
             CheckScore();
             CheckWeaponForImage();
-            
+
             Move(gTime);
             PlayerToHomeCollision();
             KeyboardInput();
