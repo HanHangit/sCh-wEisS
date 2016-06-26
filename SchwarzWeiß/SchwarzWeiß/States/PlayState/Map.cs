@@ -27,26 +27,24 @@ namespace SchwarzWeiß
     {
 
         EMapTile[,] intMap;
-        EMapType typeMap;
+        public EMapType typeMap;
         Vector2u size;
         uint tilesize;
         Color[,] spriteMap;
         Sprite sprite;
+        Random rnd = new Random();
 
         public Map()
         {
-            typeMap = EMapType.Rekursiv;
-            tilesize = 24;
+            tilesize = 16;
             size = ObjectHandler.winSize / tilesize;
             spriteMap = new Color[size.X, size.Y];
-            Console.WriteLine("Constructor");
             generateMap();
         }
 
         void generateStandard()
         {
             float chance = 0.01f;
-            Random rnd = new Random();
             intMap = new EMapTile[size.X, size.Y];
 
             for (int i = 0; i < size.X; ++i)
@@ -60,17 +58,17 @@ namespace SchwarzWeiß
                         {
                             intMap[i, j] = EMapTile.Wall;
 
-                            if (i > 0)
+                            if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y - 1)
+                            {
                                 intMap[i - 1, j] = EMapTile.Wall;
-
-                            if (j > 0)
                                 intMap[i, j - 1] = EMapTile.Wall;
-
-                            if (i < size.X - 1)
+                                intMap[i - 1, j - 1] = EMapTile.Wall;
                                 intMap[i + 1, j] = EMapTile.Wall;
-
-                            if (j < size.Y - 1)
                                 intMap[i, j + 1] = EMapTile.Wall;
+                                intMap[i + 1, j + 1] = EMapTile.Wall;
+                                intMap[i + 1, j - 1] = EMapTile.Wall;
+                                intMap[i - 1, j + 1] = EMapTile.Wall;
+                            }
 
 
                         }
@@ -82,6 +80,29 @@ namespace SchwarzWeiß
                 }
         }
 
+        void FloorPlayerHome()
+        {
+            Vector2u home1 = (Vector2u)ObjectHandler.player1.home / tilesize;
+            Vector2u home2 = (Vector2u)ObjectHandler.player2.home / tilesize;
+            Console.WriteLine(home1.ToString());
+            int place = 6;
+
+            for (int i = (int)home1.X - place + 1; i < home1.X + place; ++i)
+                for (int j = (int)home1.Y - place + 1; j < home1.Y + place; ++j)
+                {
+                    if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
+                        intMap[i, j] = EMapTile.Floor;
+                }
+
+            for (int i = (int)home2.X - place + 1; i < home2.X + place; ++i)
+                for (int j = (int)home2.Y - place + 1; j < home2.Y + place; ++j)
+                {
+                    if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
+                        intMap[i, j] = EMapTile.Floor;
+                }
+
+        }
+
         void generateRekursiv()
         {
             intMap = new EMapTile[size.X, size.Y];
@@ -90,7 +111,7 @@ namespace SchwarzWeiß
                 for (int j = 0; j < size.Y; ++j)
                     intMap[i, j] = EMapTile.Floor;
 
-            slideMap((int)size.Y / 2 , 1, (int)size.X - 1, (int)size.X / 2, 1, (int)size.Y - 1);
+            slideMap((int)size.Y / 2, 1, (int)size.X - 1, (int)size.X / 2, 1, (int)size.Y - 1);
 
 
 
@@ -153,7 +174,7 @@ namespace SchwarzWeiß
             int nextHorz4 = (noDoor[0] + vEnd) / 2;
 
             //slideMap(nextHorz1, hStart, noDoor[1], nextVert1, vStart, noDoor[0]);
-            slideMap(nextHorz2, noDoor[1], hEnd, nextVert2,  noDoor[0], vEnd);
+            slideMap(nextHorz2, noDoor[1], hEnd, nextVert2, noDoor[0], vEnd);
             //slideMap(nextHorz3, hStart, horz, nextVert3, vert, vEnd);
             //slideMap(nextHorz4, horz, hEnd, nextVert4, vert, vEnd);
 
@@ -181,6 +202,9 @@ namespace SchwarzWeiß
 
         void buildMap()
         {
+
+            FloorPlayerHome();
+
             for (int i = 0; i < size.X; ++i)
                 for (int j = 0; j < size.Y; ++j)
                 {
