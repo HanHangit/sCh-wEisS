@@ -17,7 +17,8 @@ namespace SchwarzWeiß
         {
             clockPlayer1 = new Clock();
             clockPlayer2 = new Clock();
-            
+            clockPlayer1.Restart();
+            clockPlayer2.Restart();
             isAlive = true;
             texture = new Texture("assets/Stock.png");
             sprite = new Sprite(texture);
@@ -35,13 +36,13 @@ namespace SchwarzWeiß
             {
                 ObjectHandler.player1.weaponnr = 0;
                 clockPlayer1.Restart();
-                Console.WriteLine(ObjectHandler.player1.weaponnr);
+             
             }
             if(clockPlayer2.ElapsedTime.AsSeconds() > 10)
             {
                 ObjectHandler.player2.weaponnr = 0;
                 clockPlayer2.Restart();
-                Console.WriteLine(ObjectHandler.player2.weaponnr);
+         
             }
 
         }
