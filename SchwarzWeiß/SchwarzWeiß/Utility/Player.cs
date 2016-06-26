@@ -61,7 +61,7 @@ namespace SchwarzWeiß
             score = 0;
             carry = 0;
             capacity = 6;
-            sweatlevel = 20000;
+            sweatlevel = 0;
             maxSweatLevel = 3000;
             image = new Image(img);
             texture = new Texture(image);
