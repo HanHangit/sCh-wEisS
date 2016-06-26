@@ -232,12 +232,6 @@ namespace SchwarzWeiß
 
         public void CheckSettings()
         {
-            if (Level1.highscore == ObjectHandler.player1.score)
-                //show "Player 1 wins"
-                ;
-            if (Level1.highscore == ObjectHandler.player2.score)
-                //show "Player 2 wins"
-                ;
             ObjectHandler.player1.currentspeed = speed - (ObjectHandler.player1.carry / 16.0f);
             ObjectHandler.player2.currentspeed = speed - (ObjectHandler.player2.carry / 16.0f);
 
@@ -326,7 +320,7 @@ namespace SchwarzWeiß
         void bombHasBeenPlanted(RenderWindow win)
         {
 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.LControl) && weaponnr == 2)
+            if ((Keyboard.IsKeyPressed(Keyboard.Key.LControl) || Keyboard.IsKeyPressed(Keyboard.Key.RControl)) && weaponnr == 2)
             {
                 Traps p = new Traps(sprite.Position);
                 ObjectHandler.traplist.Add(p);
