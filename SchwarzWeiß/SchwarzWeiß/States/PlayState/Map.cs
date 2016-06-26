@@ -37,7 +37,7 @@ namespace SchwarzWeiß
 
         public Map()
         {
-            tilesize = 16;
+            tilesize = 8;
             size = ObjectHandler.winSize / tilesize;
             spriteMap = new Color[size.X, size.Y];
             generateMap();
