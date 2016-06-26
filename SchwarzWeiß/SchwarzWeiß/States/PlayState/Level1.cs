@@ -34,14 +34,13 @@ namespace SchwarzWeiß
 
         public EGameState Update(RenderWindow win, GameTime t)
         {
-            //win.Draw(background);
             itemhandler.Update();
             ObjectHandler.map.Update(win, t);
             ObjectHandler.player1.Update(win, t);
             itemhandler.Render(win);
             ObjectHandler.player2.Update(win, t);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-                return EGameState.None;
+            if (Keyboard.IsKeyPressed(Keyboard.Key.B))
+                return EGameState.TitleScreen;
             else
                 return EGameState.Map1;
         }

@@ -21,7 +21,6 @@ namespace SchwarzWeiß
     {
         
         Vector2f moveDirection;
-        //RectangleShape playerShape = new RectangleShape(new Vector2f(11, 11));
         Image image;
         Texture texture;
         Sprite sprite;
@@ -63,8 +62,6 @@ namespace SchwarzWeiß
             mType = playernum;
             font = new Font("arialbd.ttf");
             txt = new Text(str, font);
-            //playerShape.Position = new Vector2f(50, 50);
-            //playerShape.FillColor = new Color(255, 255, 255);
             speed = 0.5f;
         }
 
@@ -120,7 +117,6 @@ namespace SchwarzWeiß
         {
             if (ObjectHandler.map.walkable(ObjectHandler.player1.sprite.Position + moveDirection * speed * gTime.Ellapsed.Milliseconds))
             {
-                //playerShape.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
                 sprite.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
             }
         }
@@ -199,10 +195,6 @@ namespace SchwarzWeiß
             bombHasBeenPlanted(win);
             win.Draw(sprite);
             DrawHud(win);
-            //win.Draw(playerShape);
-
-            //position = playerShape.Position;
-            //size = playerShape.Size;
 
         }
 
