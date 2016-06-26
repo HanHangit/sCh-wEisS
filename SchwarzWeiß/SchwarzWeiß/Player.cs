@@ -71,7 +71,6 @@ namespace SchwarzWeiß
         {
             if(compare(ObjectHandler.player1.position, ObjectHandler.player2.position))
             {
-                Console.WriteLine("chrisistcool");
                 return true;
             }
             return false;
