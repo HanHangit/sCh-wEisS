@@ -223,12 +223,12 @@ namespace SchwarzWeiß
         {
             CheckScore();
             CheckWeaponForImage();
-
+            bombHasBeenPlanted(win);
             Move(gTime);
             PlayerToHomeCollision();
             KeyboardInput();
             PlayerToPlayerCollision();
-            bombHasBeenPlanted(win);
+            
             win.Draw(sprite);
             DrawHud(win);
 

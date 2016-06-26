@@ -31,13 +31,13 @@ namespace SchwarzWeiß
             // Collision -> 20 Punkte
 
             PlayerCollision();
-            if(clockPlayer1.ElapsedTime.AsSeconds() > 15)
+            if(clockPlayer1.ElapsedTime.AsSeconds() > 10)
             {
                 ObjectHandler.player1.weaponnr = 0;
                 clockPlayer1.Restart();
                 Console.WriteLine(ObjectHandler.player1.weaponnr);
             }
-            if(clockPlayer2.ElapsedTime.AsSeconds() > 15)
+            if(clockPlayer2.ElapsedTime.AsSeconds() > 10)
             {
                 ObjectHandler.player2.weaponnr = 0;
                 clockPlayer2.Restart();
