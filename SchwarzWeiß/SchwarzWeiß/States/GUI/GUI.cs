@@ -33,6 +33,8 @@ namespace SchwarzWeiß
         {
            player1SchweißText.DisplayedString = ("Player1 -  SchweiS: " + ObjectHandler.player1.sweatlevel.ToString());
             player1Score.DisplayedString = "Player1 - Score: " + ObjectHandler.player1.score.ToString();
+            player2SchweißText.DisplayedString = ("Player2 -  SchweiS: " + ObjectHandler.player2.sweatlevel.ToString());
+            player2Score.DisplayedString = "Player2 - Score: " + ObjectHandler.player2.score.ToString();
         }
         void Player1Init()
         {
@@ -40,8 +42,8 @@ namespace SchwarzWeiß
      
             player1SchweißText = new Text("Player1 -  SchweiS: " + ObjectHandler.player1.sweatlevel.ToString(), font);
             player1Score = new Text("Player1 - Score: " + ObjectHandler.player1.score.ToString(), font);
-            player2SchweißText = new Text("Player2 -  SchweiS: " + ObjectHandler.player1.sweatlevel.ToString(), font);
-            player2Score = new Text("Player2 - Score: " + ObjectHandler.player1.score.ToString(), font);
+            player2SchweißText = new Text("Player2 -  SchweiS: " + ObjectHandler.player2.sweatlevel.ToString(), font);
+            player2Score = new Text("Player2 - Score: " + ObjectHandler.player2.score.ToString(), font);
 
             player1Score.Position = new Vector2f(10, 10);
             player1SchweißText.Position = new Vector2f(10, 50);
