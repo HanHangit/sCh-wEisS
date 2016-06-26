@@ -15,6 +15,7 @@ namespace SchwarzWeiß
 
         TitleScreen,
         Map1,
+        Credits,
         Count
     }
 

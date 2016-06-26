@@ -17,7 +17,7 @@ namespace SchwarzWeiß
 
         public Game()
         {
-            window = new RenderWindow(new VideoMode(1280, 800), "Schweisausbruch");
+            window = new RenderWindow(new VideoMode(1280, 720), "Schweisausbruch");
             Console.WriteLine(window.Size.ToString());
             ObjectHandler.winSize = window.Size;
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
@@ -49,6 +49,11 @@ namespace SchwarzWeiß
                     break;
                 case EGameState.Map1:
                     state = new Level1();
+                    state.LoadContent();
+                    state.Initialize();
+                    break;
+                case EGameState.Credits:
+                    state = new Credits();
                     state.LoadContent();
                     state.Initialize();
                     break;
