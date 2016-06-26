@@ -34,6 +34,7 @@ namespace SchwarzWeiß
         public int carry { get; set; }
         public int score { get; private set; }
         public float speed { get; set; }
+        public float currentspeed { get; set; }
         public int weaponnr { get; set; }
         public int weapontime { get; set; }
         //0 - keine; 1 - stock; 2 - other
@@ -62,6 +63,7 @@ namespace SchwarzWeiß
             font = new Font("arialbd.ttf");
             txt = new Text(str, font);
             speed = 0.5f;
+            currentspeed = 0.5f;
         }
 
         public Boolean PlayerToPlayerCollision()
@@ -114,7 +116,7 @@ namespace SchwarzWeiß
         void Move(GameTime gTime)
         {
 
-            Vector2f nextMove = moveDirection * speed * gTime.Ellapsed.Milliseconds;
+            Vector2f nextMove = moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
             Vector2f leftTop = sprite.Position + nextMove;
             Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove;
             Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove;
@@ -153,7 +155,7 @@ namespace SchwarzWeiß
                 && ObjectHandler.map.walkable(RightBottom + new Vector2f(-size.X,0))
                 && ObjectHandler.map.walkable(rightTop + new Vector2f(0,size.Y)))
             {
-                sprite.Position += moveDirection * speed * gTime.Ellapsed.Milliseconds;
+                sprite.Position += moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
             }
         }
 
@@ -216,17 +218,30 @@ namespace SchwarzWeiß
             else ObjectHandler.player2.sprite.Texture = new Texture(new Image("pictures/megustasmall.png"));
         }
 
-        public void CheckScore()
+        public void CheckSettings()
         {
-            //if (Level1.highscore == ObjectHandler.player1.score)
-            // 
-            //if (Level1.highscore == ObjectHandler.player2.score)
+            if (Level1.highscore == ObjectHandler.player1.score)
+                //show "Player 1 wins"
+                ;
+            if (Level1.highscore == ObjectHandler.player2.score)
+                //show "Player 2 wins"
+                ;
+            ObjectHandler.player1.currentspeed = speed - (ObjectHandler.player1.carry / 16.0f);
+            ObjectHandler.player2.currentspeed = speed - (ObjectHandler.player2.carry / 16.0f);
 
+            ObjectHandler.player1.sweatlevel += ObjectHandler.player1.carry/2.0f;
+            if (ObjectHandler.player1.sweatlevel > 3000) ObjectHandler.player1.sweatlevel -= 1.5f;
+            if (ObjectHandler.player1.sweatlevel > 1000) ObjectHandler.player1.sweatlevel -= 0.5f;
+            if (ObjectHandler.player1.sweatlevel > 1) ObjectHandler.player1.sweatlevel -= 0.05f;
+            ObjectHandler.player2.sweatlevel += ObjectHandler.player2.carry/2.0f;
+            if (ObjectHandler.player2.sweatlevel > 3000) ObjectHandler.player2.sweatlevel -= 1.5f;
+            if (ObjectHandler.player2.sweatlevel > 1000) ObjectHandler.player2.sweatlevel -= 0.5f;
+            if (ObjectHandler.player2.sweatlevel > 1) ObjectHandler.player2.sweatlevel -= 0.05f;
         }
 
         public void Update(RenderWindow win, GameTime gTime)
         {
-            CheckScore();
+            CheckSettings();
             CheckWeaponForImage();
             bombHasBeenPlanted(win);
             Move(gTime);
