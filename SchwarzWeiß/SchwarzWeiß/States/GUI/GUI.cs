@@ -33,7 +33,7 @@ namespace SchwarzWeiß
         }
         public void Update()
         {
-           player1SchweißText.DisplayedString = (" \t\tSchweiS: " + ObjectHandler.player1.sweatlevel.ToString());
+            player1SchweißText.DisplayedString = (" \t\tSchweiS: " + ObjectHandler.player1.sweatlevel.ToString());
             player1Score.DisplayedString = "Player1 - Score: " + ObjectHandler.player1.score.ToString();
             player1Carry.DisplayedString = " \t\t\tCarry: " + ObjectHandler.player1.carry.ToString() + " / " + 6;
 
@@ -58,7 +58,7 @@ namespace SchwarzWeiß
             player1SchweißText.Position = new Vector2f(10, 70);
 
             player2Score.Position = new Vector2f(1000, 10);
-            player2Carry.Position = new Vector2f(10, 40);
+            player2Carry.Position = new Vector2f(1000, 40);
             player2SchweißText.Position = new Vector2f(1000, 70);
 
         }
