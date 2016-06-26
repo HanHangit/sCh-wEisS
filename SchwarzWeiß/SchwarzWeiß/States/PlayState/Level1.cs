@@ -49,7 +49,7 @@ namespace SchwarzWeiß
             if (Level1.highscore <= ObjectHandler.player1.score && ObjectHandler.player1.score > ObjectHandler.player2.score)
             {
                 //show "Player 1 wins"
-                winner = new Text("player one\n\t  wins", winnerfont);
+                winner = new Text("player one\n\t wins", winnerfont);
                 winner.Color = Color.Yellow;
                 winner.CharacterSize = 200;
                 winner.Position = new Vector2f(100, 120);
@@ -58,7 +58,7 @@ namespace SchwarzWeiß
             if (Level1.highscore <= ObjectHandler.player2.score && ObjectHandler.player2.score > ObjectHandler.player1.score)
             {
                 //show "Player 2 wins"
-                winner = new Text("player two\n\t  wins", winnerfont);
+                winner = new Text("player two\n\t wins", winnerfont);
                 winner.Color = Color.Red;
                 winner.CharacterSize = 200;
                 winner.Position = new Vector2f(100, 120);
