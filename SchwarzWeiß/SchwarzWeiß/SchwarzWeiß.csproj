@@ -80,6 +80,7 @@
     <Compile Include="States\Program.cs" />
     <Compile Include="States\TitleScreen.cs" />
     <Compile Include="Utility\GameTime.cs" />
+    <Compile Include="Utility\Water.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

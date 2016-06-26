@@ -86,7 +86,7 @@ namespace SchwarzWeiß
             Vector2u home1 = (Vector2u)ObjectHandler.player1.home / tilesize;
             Vector2u home2 = (Vector2u)ObjectHandler.player2.home / tilesize;
             Console.WriteLine(home1.ToString());
-            int place = 3;
+            int place = 4;
 
             for (int i = (int)home1.X - place + 1; i < home1.X + place; ++i)
                 for (int j = (int)home1.Y - place + 1; j < home1.Y + place; ++j)

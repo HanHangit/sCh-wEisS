@@ -24,12 +24,18 @@ namespace SchwarzWeiß
         public Texture texture;
         Sprite sprite;
 
+        List<Water> waterList;
+        float timer;
+        public bool stun;
+        float stunTimer;
+
         Text txt;
         Font font;
 
         EPlayer mType;
 
         public float sweatlevel { get; set; }
+        public float maxSweatLevel { get; set; }
         public int capacity { get; set; }
         public int carry { get; set; }
         public int score { get; private set; }
@@ -46,13 +52,17 @@ namespace SchwarzWeiß
 
         public Player(EPlayer playernum, string str, Image img, Vector2f pos)
         {
-
+            waterList = new List<Water>();
+            stun = false;
+            stunTimer = 0;
+            timer = 0;
             weapontime = 0;
             weaponnr = 0;
             score = 0;
             carry = 0;
             capacity = 6;
-            sweatlevel = 0;
+            sweatlevel = 20000;
+            maxSweatLevel = 3000;
             image = new Image(img);
             texture = new Texture(image);
             sprite = new Sprite(texture);
@@ -118,7 +128,7 @@ namespace SchwarzWeiß
             int offset = 6;
 
             Vector2f nextMove = moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
-            Vector2f leftTop = sprite.Position + nextMove + new Vector2f(offset,offset);
+            Vector2f leftTop = sprite.Position + nextMove + new Vector2f(offset, offset);
             Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove + new Vector2f(-offset, -offset);
             Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove + new Vector2f(offset, -offset);
             Vector2f RightBottom = sprite.Position + (Vector2f)sprite.Texture.Size + nextMove + new Vector2f(-offset, -offset);
@@ -151,10 +161,11 @@ namespace SchwarzWeiß
                 && ObjectHandler.map.walkable(leftBottom)
                 && ObjectHandler.map.walkable(rightTop)
                 && ObjectHandler.map.walkable(RightBottom)
-                && ObjectHandler.map.walkable(leftTop + new Vector2f(size.X,0))
-                && ObjectHandler.map.walkable(leftBottom + new Vector2f(0,-size.Y))
-                && ObjectHandler.map.walkable(RightBottom + new Vector2f(-size.X,0))
-                && ObjectHandler.map.walkable(rightTop + new Vector2f(0,size.Y)))
+                && ObjectHandler.map.walkable(leftTop + new Vector2f(size.X, 0))
+                && ObjectHandler.map.walkable(leftBottom + new Vector2f(0, -size.Y))
+                && ObjectHandler.map.walkable(RightBottom + new Vector2f(-size.X, 0))
+                && ObjectHandler.map.walkable(rightTop + new Vector2f(0, size.Y))
+                && !stun)
             {
                 sprite.Position += moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
             }
@@ -230,11 +241,11 @@ namespace SchwarzWeiß
             ObjectHandler.player1.currentspeed = speed - (ObjectHandler.player1.carry / 16.0f);
             ObjectHandler.player2.currentspeed = speed - (ObjectHandler.player2.carry / 16.0f);
 
-            ObjectHandler.player1.sweatlevel += ObjectHandler.player1.carry/2.0f;
+            ObjectHandler.player1.sweatlevel += ObjectHandler.player1.carry / 2.0f;
             if (ObjectHandler.player1.sweatlevel > 3000) ObjectHandler.player1.sweatlevel -= 0.8f;
             if (ObjectHandler.player1.sweatlevel > 1000) ObjectHandler.player1.sweatlevel -= 0.3f;
             if (ObjectHandler.player1.sweatlevel > 1) ObjectHandler.player1.sweatlevel -= 0.05f;
-            ObjectHandler.player2.sweatlevel += ObjectHandler.player2.carry/2.0f;
+            ObjectHandler.player2.sweatlevel += ObjectHandler.player2.carry / 2.0f;
             if (ObjectHandler.player2.sweatlevel > 3000) ObjectHandler.player2.sweatlevel -= 0.8f;
             if (ObjectHandler.player2.sweatlevel > 1000) ObjectHandler.player2.sweatlevel -= 0.3f;
             if (ObjectHandler.player2.sweatlevel > 1) ObjectHandler.player2.sweatlevel -= 0.05f;
@@ -249,15 +260,72 @@ namespace SchwarzWeiß
             PlayerToHomeCollision();
             KeyboardInput();
             PlayerToPlayerCollision();
-            
+            CheckSweat(gTime);
+
             win.Draw(sprite);
             DrawHud(win);
 
+
+            for (int i = 0; i < waterList.Count; ++i)
+            {
+                if (waterList[i].isAlive)
+                {
+                    waterList[i].Update(gTime);
+                    waterList[i].Draw(win);
+                }
+                else
+                {
+                    waterList.RemoveAt(i);
+                    --i;
+                }
+            }
+
+        }
+
+        void CheckSweat(GameTime gTime)
+        {
+
+
+            if (stun)
+            {
+                stunTimer += gTime.Ellapsed.Milliseconds;
+                if (stunTimer > 3000)
+                {
+                    stunTimer = 0;
+                    stun = false;
+                }
+            }
+
+            if (sweatlevel > maxSweatLevel)
+            {
+                timer += gTime.Ellapsed.Milliseconds;
+                waterList.Add(new Water(sprite.Position + (Vector2f)sprite.Texture.Size / 2));
+                if (timer > 3000)
+                {
+                    sweatlevel = 0;
+                    timer = 0;
+                }
+
+
+                if(mType == EPlayer.Player1)
+                {
+                    if (MVec.length(sprite.Position - ObjectHandler.player2.sprite.Position) < 100)
+                        ObjectHandler.player2.stun = true;
+                }
+                else
+                {
+                    if (MVec.length(sprite.Position - ObjectHandler.player1.sprite.Position) < 100)
+                        ObjectHandler.player1.stun = true;
+                }
+
+
+
+            }
         }
 
         void bombHasBeenPlanted(RenderWindow win)
         {
-            
+
             if (Keyboard.IsKeyPressed(Keyboard.Key.LControl) && weaponnr == 2)
             {
                 Traps p = new Traps(sprite.Position);
