@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVec.cs" />
+    <Compile Include="States\PlayState\Credits.cs" />
     <Compile Include="States\PlayState\Items\Traps.cs" />
     <Compile Include="Utility\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

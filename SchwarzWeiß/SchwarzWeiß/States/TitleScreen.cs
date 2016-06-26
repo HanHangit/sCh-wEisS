@@ -21,48 +21,24 @@ namespace SchwarzWeiß
         Sprite pftch;
         Sprite sweatman;
 
-        List<RectangleShape> list;
+        List<Text> textlist;
+        List<IntRect> list;
 
         public void Initialize()
         {
-            list = new List<RectangleShape>();
+            list = new List<IntRect>();
             //mainmenu, start
-            list.Add(new RectangleShape(new Vector2f(420, 100)));
-            list.Add(new RectangleShape(new Vector2f(120, 60)));
+            list.Add(new IntRect(420, 280, 420, 100));
+            list.Add(new IntRect(330, 400, 120, 60));
             //end, credits
-            list.Add(new RectangleShape(new Vector2f(100, 60)));
-            list.Add(new RectangleShape(new Vector2f(150, 60)));
+            list.Add(new IntRect(750, 600, 100, 60));
+            list.Add(new IntRect(750, 500, 150, 60));
             //levels, characters
-            list.Add(new RectangleShape(new Vector2f(150, 60)));
-            list.Add(new RectangleShape(new Vector2f(210, 60)));
+            list.Add(new IntRect(330,500, 150, 60));
+            list.Add(new IntRect(330, 600, 210, 60));
             //stones, sweatman <- sounds !!!!!!!!
-            list.Add(new RectangleShape(new Vector2f(160, 190)));
-            list.Add(new RectangleShape(new Vector2f(345, 260)));
-
-            //mainmmenu
-            list[0].Position = new Vector2f(420, 280);
-            list[0].FillColor = new Color(Color.Transparent);
-            //start
-            list[1].Position = new Vector2f(330, 400);
-            list[1].FillColor = new Color(Color.Transparent);
-            //end
-            list[2].Position = new Vector2f(750, 600);
-            list[2].FillColor = new Color(Color.Transparent);
-            //credits
-            list[3].Position = new Vector2f(750, 500);
-            list[3].FillColor = new Color(Color.Transparent);
-            //levels
-            list[4].Position = new Vector2f(330, 500);
-            list[4].FillColor = new Color(Color.Transparent);
-            //characters
-            list[5].Position = new Vector2f(330, 600);
-            list[5].FillColor = new Color(Color.Transparent);
-            //stones
-            list[6].Position = new Vector2f(1000, 335);
-            list[6].FillColor = new Color(Color.Transparent);
-            //sweatman
-            list[7].Position = new Vector2f(910, 525);
-            list[7].FillColor = new Color(Color.Transparent);
+            list.Add(new IntRect(1000, 335, 160, 190));
+            list.Add(new IntRect(910, 525, 345, 260));
 
             pftch = new Sprite(new Texture(new Image("pictures/pftch.png")));
             pftch.Position = new Vector2f(125,275);
@@ -109,7 +85,16 @@ namespace SchwarzWeiß
             memeselection.Position = new Vector2f(330, 600);
             memeselection.CharacterSize = 40;
 
+            Text[] array = { mainmenu, start, exit, credits, levels, memeselection, gamename};
+            textlist = array.ToList();
 
+        }
+
+        public bool IsMouseInRectangle(IntRect rect, RenderWindow win)
+        {
+            Vector2i mouse = Mouse.GetPosition()-win.Position;
+            return (rect.Left<mouse.X && rect.Left+rect.Width>mouse.X 
+                        && rect.Top<mouse.Y && rect.Top+rect.Height>mouse.Y);
         }
 
         public void LoadContent()
@@ -121,21 +106,54 @@ namespace SchwarzWeiß
         {
             
             win.Draw(sbackground);
-            for(int e = 0; e < 8; e++)
-            {
-                win.Draw(list[e]);
-            }
             win.Draw(sweatman);
             win.Draw(pftch);
             win.Draw(stones);
             win.Draw(stones1);
-            win.Draw(gamename);
-            win.Draw(mainmenu);
-            win.Draw(credits);
-            win.Draw(start);
-            win.Draw(exit);
-            win.Draw(levels);
-            win.Draw(memeselection);
+            foreach(Text txt in textlist)
+            {
+                win.Draw(txt);
+                txt.Color = Color.White;
+            }
+            textlist[0].Color = Color.Black;
+            textlist[6].Color = Color.Red;
+
+            int index = -1;
+            
+                for (int e = 0; e < 7; e++)
+                {
+                    if (IsMouseInRectangle(list[e], win))
+                    {
+                        index = e;
+                        break;
+                    }
+                }
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                {
+                    switch (index)
+                    {
+                        //start
+                        case 1: return EGameState.Map1;
+                        //end
+                        case 2: return EGameState.None;
+                        //credits
+                        case 3: return EGameState.Credits;
+                        //level
+                        case 4: break;
+                        case 5: break;
+                        case 6: break;
+                        case 7: break;
+                        default: break;
+                    }
+                }
+            else
+            {
+                if (index != -1 && index != 0)
+                {
+                    textlist[index].Color = Color.Blue;
+                }
+            }
+            
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                 return EGameState.Map1;

@@ -52,6 +52,11 @@ namespace SchwarzWeiß
                     state.LoadContent();
                     state.Initialize();
                     break;
+                case EGameState.Credits:
+                    state = new Credits();
+                    state.LoadContent();
+                    state.Initialize();
+                    break;
                 default:
                     break;
             }
