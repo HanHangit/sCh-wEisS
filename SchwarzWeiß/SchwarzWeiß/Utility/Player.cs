@@ -220,12 +220,6 @@ namespace SchwarzWeiß
 
         public void CheckSettings()
         {
-            if (Level1.highscore == ObjectHandler.player1.score)
-                //show "Player 1 wins"
-                ;
-            if (Level1.highscore == ObjectHandler.player2.score)
-                //show "Player 2 wins"
-                ;
             ObjectHandler.player1.currentspeed = speed - (ObjectHandler.player1.carry / 16.0f);
             ObjectHandler.player2.currentspeed = speed - (ObjectHandler.player2.carry / 16.0f);
 
