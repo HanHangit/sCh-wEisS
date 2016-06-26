@@ -35,19 +35,19 @@
   <ItemGroup>
     <Reference Include="sfmlnet-audio-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
+      <HintPath>C:\Users\Kunde\Desktop\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>C:\Users\Kunde\Desktop\SFML.Net-2.2\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-system-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-system-2.dll</HintPath>
+      <HintPath>C:\Users\Kunde\Desktop\SFML.Net-2.2\lib\sfmlnet-system-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-window-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SFML.Net-2.2-32-bit(1)\SFML.Net-2.2\lib\sfmlnet-window-2.dll</HintPath>
+      <HintPath>C:\Users\Kunde\Desktop\SFML.Net-2.2\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVec.cs" />
+    <Compile Include="States\GUI\GUI.cs" />
     <Compile Include="States\PlayState\Credits.cs" />
     <Compile Include="States\PlayState\Items\Traps.cs" />
     <Compile Include="Utility\Player.cs" />
@@ -94,12 +95,18 @@
     <None Include="Star Wuarras.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Thunder Strike.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\Falle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\Obst.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\SchweisBalken.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\Stein.png">
