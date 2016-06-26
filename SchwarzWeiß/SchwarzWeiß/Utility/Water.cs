@@ -21,7 +21,7 @@ namespace SchwarzWeiß
         {
             Console.WriteLine("Push");
             shape = new RectangleShape(new Vector2f(3,3));
-            shape.FillColor = new Color(220, 20, 210);
+            shape.FillColor = new Color(125, 206, 250);
             shape.Position = position;
             Random rnd = new Random();
             moveDir = new Vector2f(rnd.Next(-100, 100), rnd.Next(-100, 100));

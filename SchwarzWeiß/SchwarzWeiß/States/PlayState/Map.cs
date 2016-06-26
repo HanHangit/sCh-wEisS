@@ -15,7 +15,8 @@ namespace SchwarzWeiß
         None,
         Wall,
         Floor,
-        Base
+        Base1,
+        Base2
     }
 
     enum EMapType
@@ -27,6 +28,9 @@ namespace SchwarzWeiß
     class Map
     {
 
+        Image img;
+        Texture background;
+        Sprite bgr;
         EMapTile[,] intMap;
         public EMapType typeMap;
         Vector2u size;
@@ -37,6 +41,9 @@ namespace SchwarzWeiß
 
         public Map()
         {
+            img = new Image("pictures/grasstitlescreen.png");
+            background = new Texture(img);
+            bgr = new Sprite(background);
             tilesize = 8;
             size = ObjectHandler.winSize / tilesize;
             spriteMap = new Color[size.X, size.Y];
@@ -92,14 +99,14 @@ namespace SchwarzWeiß
                 for (int j = (int)home1.Y - place + 1; j < home1.Y + place; ++j)
                 {
                     if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
-                        intMap[i, j] = EMapTile.Base;
+                        intMap[i, j] = EMapTile.Base1;
                 }
 
             for (int i = (int)home2.X - place + 1; i < home2.X + place; ++i)
                 for (int j = (int)home2.Y - place + 1; j < home2.Y + place; ++j)
                 {
                     if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
-                        intMap[i, j] = EMapTile.Base;
+                        intMap[i, j] = EMapTile.Base2;
                 }
 
         }
@@ -213,11 +220,18 @@ namespace SchwarzWeiß
 
 
                     if (intMap[i, j] == EMapTile.Floor)
+                    {
                         spriteMap[i, j] = Color.Blue;
-                    else if (intMap[i, j] == EMapTile.Base)
-                        spriteMap[i, j] = Color.Green;
+                        spriteMap[i, j].A = 0;
+                    }
+                    else if (intMap[i, j] == EMapTile.Base1)
+                        spriteMap[i, j] = new Color(0,0,128,200);
+                    else if (intMap[i, j] == EMapTile.Base2)
+                        spriteMap[i, j] = new Color(205,0,0,200);
                     else
-                        spriteMap[i, j] = Color.Black;
+                    {
+                        spriteMap[i, j] = new Color(110, 123, 139,220);
+                    }
                 }
 
 
@@ -246,7 +260,7 @@ namespace SchwarzWeiß
         public bool onBase(Vector2f position)
         {
             Vector2u pos = (Vector2u)position / tilesize;
-            if (intMap[pos.X, pos.Y] == EMapTile.Base)
+            if (intMap[pos.X, pos.Y] == EMapTile.Base1 || intMap[pos.X,pos.Y] == EMapTile.Base2)
                 return true;
             else
                 return false;
@@ -254,6 +268,7 @@ namespace SchwarzWeiß
 
         public void Update(RenderWindow win, GameTime gTime)
         {
+            win.Draw(bgr);
             win.Draw(sprite);
             if (Keyboard.IsKeyPressed(Keyboard.Key.F5))
                 generateMap();

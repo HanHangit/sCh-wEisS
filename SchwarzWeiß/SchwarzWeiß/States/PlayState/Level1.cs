@@ -21,7 +21,7 @@ namespace SchwarzWeiß
         public void Initialize()
         {
             winnerfont = new Font("CANDLE LIGHT.ttf");
-            highscore = 10;
+            highscore = 25;
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
             background.FillColor = Color.Green;
             itemhandler = new ItemHandler();
