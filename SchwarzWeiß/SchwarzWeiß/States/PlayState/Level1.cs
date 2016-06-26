@@ -21,7 +21,7 @@ namespace SchwarzWeiß
         public void Initialize()
         {
             winnerfont = new Font("CANDLE LIGHT.ttf");
-            highscore = 25;
+            highscore = 50;
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
             background.FillColor = Color.Green;
             itemhandler = new ItemHandler();
@@ -50,7 +50,7 @@ namespace SchwarzWeiß
             {
                 //show "Player 1 wins"
                 winner = new Text("player one\n\t wins", winnerfont);
-                winner.Color = Color.Yellow;
+                winner.Color = Color.Blue;
                 winner.CharacterSize = 200;
                 winner.Position = new Vector2f(100, 120);
                 win.Draw(winner);
