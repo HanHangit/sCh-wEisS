@@ -230,10 +230,17 @@ namespace SchwarzWeiß
         public bool walkable(Vector2f position)
         {
             Vector2u pos = (Vector2u)position / tilesize;
-            if (intMap[pos.X, pos.Y] == EMapTile.Wall)
+            try
+            {
+                if (intMap[pos.X, pos.Y] == EMapTile.Wall)
+                    return false;
+                else
+                    return true;
+            }
+            catch(IndexOutOfRangeException)
+            {
                 return false;
-            else
-                return true;
+            }
         }
 
         public bool onBase(Vector2f position)

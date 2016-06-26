@@ -81,14 +81,14 @@ namespace SchwarzWeiß
                 }
                 else if (ObjectHandler.player1.weaponnr == 1)
                 {
-
+                    p1.weaponnr = 0;
                     p2.carry = 0;
                     p2.sprite.Position = p2.home;
 
                 }
                 else if (ObjectHandler.player2.weaponnr == 1)
                 {
-
+                    p2.weaponnr = 0;
                     p1.carry = 0;
                     p1.sprite.Position = p1.home;
 
@@ -115,12 +115,13 @@ namespace SchwarzWeiß
 
         void Move(GameTime gTime)
         {
+            int offset = 6;
 
             Vector2f nextMove = moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
-            Vector2f leftTop = sprite.Position + nextMove;
-            Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove;
-            Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove;
-            Vector2f RightBottom = sprite.Position + (Vector2f)sprite.Texture.Size + nextMove;
+            Vector2f leftTop = sprite.Position + nextMove + new Vector2f(offset,offset);
+            Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove + new Vector2f(-offset, -offset);
+            Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove + new Vector2f(offset, -offset);
+            Vector2f RightBottom = sprite.Position + (Vector2f)sprite.Texture.Size + nextMove + new Vector2f(-offset, -offset);
             Vector2f size = (Vector2f)sprite.Texture.Size / 2;
 
             /*
@@ -256,7 +257,7 @@ namespace SchwarzWeiß
 
         void bombHasBeenPlanted(RenderWindow win)
         {
-
+            
             if (Keyboard.IsKeyPressed(Keyboard.Key.LControl) && weaponnr == 2)
             {
                 Traps p = new Traps(sprite.Position);
