@@ -11,7 +11,7 @@ namespace SchwarzWeiß
 {
     class Level1 : GameState
     {
-
+        GUI gui;
         RectangleShape background;
         ItemHandler itemhandler;
         public static int highscore;
@@ -22,7 +22,7 @@ namespace SchwarzWeiß
             background = new RectangleShape((Vector2f)ObjectHandler.winSize);
             background.FillColor = Color.Green;
             itemhandler = new ItemHandler();
-
+            gui = new GUI();
             ObjectHandler.map = new Map();
 
         }
@@ -34,16 +34,22 @@ namespace SchwarzWeiß
 
         public EGameState Update(RenderWindow win, GameTime t)
         {
+            
             itemhandler.Update();
             ObjectHandler.map.Update(win, t);
             ObjectHandler.player1.Update(win, t);
             itemhandler.Render(win);
             ObjectHandler.player2.Update(win, t);
+            gui.Update();
+            gui.Render(win);
             if (Keyboard.IsKeyPressed(Keyboard.Key.B))
                 return EGameState.TitleScreen;
             else
                 return EGameState.Map1;
+
+            
         }
+
 
     }
     

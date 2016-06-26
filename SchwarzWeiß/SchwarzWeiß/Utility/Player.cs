@@ -19,10 +19,9 @@ namespace SchwarzWeiß
 
     class Player : Collider
     {
-
         Vector2f moveDirection;
         Image image;
-        Texture texture;
+        public Texture texture;
         Sprite sprite;
 
         Text txt;
@@ -156,6 +155,11 @@ namespace SchwarzWeiß
 
         void KeyboardInput()
         {
+            //TEST
+            if (Keyboard.IsKeyPressed(Keyboard.Key.M))
+            {
+                sweatlevel++;
+            }
             moveDirection = new Vector2f(0, 0);
             if (mType == EPlayer.Player1)
             {
