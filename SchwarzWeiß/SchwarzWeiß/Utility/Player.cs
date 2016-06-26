@@ -98,11 +98,9 @@ namespace SchwarzWeiß
 
         public void PlayerToHomeCollision()
         {
-            if (Collision<Player, Player>.CheckCollision(sprite.Position, size, home, new Vector2u(15, 15)))
+            if (ObjectHandler.map.onBase(sprite.Position + (Vector2f)sprite.Texture.Size / 2))
             {
-                if (mType == EPlayer.Player1)
-                    if (mType == EPlayer.Player2)
-                        score += carry;
+                score += carry;
                 carry = 0;
             }
         }
@@ -144,7 +142,7 @@ namespace SchwarzWeiß
             */
 
 
-            if(ObjectHandler.map.walkable(leftTop)
+            if (ObjectHandler.map.walkable(leftTop)
                 && ObjectHandler.map.walkable(leftBottom)
                 && ObjectHandler.map.walkable(rightTop)
                 && ObjectHandler.map.walkable(RightBottom))

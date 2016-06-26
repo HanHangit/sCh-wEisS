@@ -14,7 +14,8 @@ namespace SchwarzWeiß
     {
         None,
         Wall,
-        Floor
+        Floor,
+        Base
     }
 
     enum EMapType
@@ -85,20 +86,20 @@ namespace SchwarzWeiß
             Vector2u home1 = (Vector2u)ObjectHandler.player1.home / tilesize;
             Vector2u home2 = (Vector2u)ObjectHandler.player2.home / tilesize;
             Console.WriteLine(home1.ToString());
-            int place = 6;
+            int place = 3;
 
             for (int i = (int)home1.X - place + 1; i < home1.X + place; ++i)
                 for (int j = (int)home1.Y - place + 1; j < home1.Y + place; ++j)
                 {
                     if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
-                        intMap[i, j] = EMapTile.Floor;
+                        intMap[i, j] = EMapTile.Base;
                 }
 
             for (int i = (int)home2.X - place + 1; i < home2.X + place; ++i)
                 for (int j = (int)home2.Y - place + 1; j < home2.Y + place; ++j)
                 {
                     if (i > 0 && j > 0 && i < size.X - 1 && j < size.Y)
-                        intMap[i, j] = EMapTile.Floor;
+                        intMap[i, j] = EMapTile.Base;
                 }
 
         }
@@ -213,6 +214,8 @@ namespace SchwarzWeiß
 
                     if (intMap[i, j] == EMapTile.Floor)
                         spriteMap[i, j] = Color.Blue;
+                    else if (intMap[i, j] == EMapTile.Base)
+                        spriteMap[i, j] = Color.Green;
                     else
                         spriteMap[i, j] = Color.Black;
                 }
@@ -227,10 +230,19 @@ namespace SchwarzWeiß
         public bool walkable(Vector2f position)
         {
             Vector2u pos = (Vector2u)position / tilesize;
-            if (intMap[pos.X, pos.Y] != EMapTile.Floor)
+            if (intMap[pos.X, pos.Y] == EMapTile.Wall)
                 return false;
             else
                 return true;
+        }
+
+        public bool onBase(Vector2f position)
+        {
+            Vector2u pos = (Vector2u)position / tilesize;
+            if (intMap[pos.X, pos.Y] == EMapTile.Base)
+                return true;
+            else
+                return false;
         }
 
         public void Update(RenderWindow win, GameTime gTime)
