@@ -52,6 +52,15 @@ namespace SchwarzWeiß
                 int posX = rnd.Next(100, 1100);
                 int posY = rnd.Next(100, 600);
 
+                Vector2f size = new Vector2f(20, 20);
+
+                while(!ObjectHandler.map.walkable(new Vector2f(posX,posY))
+                    || !ObjectHandler.map.walkable(new Vector2f(posX,posY) + size))
+                {
+                    posX = rnd.Next(100, 1100);
+                    posY = rnd.Next(100, 600);
+                }
+
                 Stern p = new Stern(posX, posY);
                 ObjectHandler.itemlist.Add(p);
                 clock.Restart();
@@ -63,9 +72,17 @@ namespace SchwarzWeiß
                 Random rnd = new Random();
 
                 int weaponchoose = rnd.Next(0, 2);
+
                 int posX = rnd.Next(100, 1100);
                 int posY = rnd.Next(100, 600);
-                if(weaponchoose == 1)
+
+                while (!ObjectHandler.map.walkable(new Vector2f(posX, posY)))
+                {
+                    posX = rnd.Next(100, 1100);
+                    posY = rnd.Next(100, 600);
+                }
+
+                if (weaponchoose == 1)
                 {
                     Stock q = new Stock(posX, posY);
                     ObjectHandler.itemlist.Add(q);

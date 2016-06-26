@@ -98,7 +98,8 @@ namespace SchwarzWeiß
 
         public void PlayerToHomeCollision()
         {
-            if (ObjectHandler.map.onBase(sprite.Position + (Vector2f)sprite.Texture.Size / 2))
+            if (((mType == EPlayer.Player1 && sprite.Position.X < 400) || (
+                mType == EPlayer.Player2 && sprite.Position.X > 600)) && ObjectHandler.map.onBase(sprite.Position + (Vector2f)sprite.Texture.Size / 2))
             {
                 score += carry;
                 carry = 0;

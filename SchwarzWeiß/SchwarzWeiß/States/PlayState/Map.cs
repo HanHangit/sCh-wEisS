@@ -45,7 +45,7 @@ namespace SchwarzWeiß
 
         void generateStandard()
         {
-            float chance = 0.01f;
+            float chance = 0.003f;
             intMap = new EMapTile[size.X, size.Y];
 
             for (int i = 0; i < size.X; ++i)
