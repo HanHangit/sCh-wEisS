@@ -231,12 +231,12 @@ namespace SchwarzWeiß
             ObjectHandler.player2.currentspeed = speed - (ObjectHandler.player2.carry / 16.0f);
 
             ObjectHandler.player1.sweatlevel += ObjectHandler.player1.carry/2.0f;
-            if (ObjectHandler.player1.sweatlevel > 3000) ObjectHandler.player1.sweatlevel -= 1.5f;
-            if (ObjectHandler.player1.sweatlevel > 1000) ObjectHandler.player1.sweatlevel -= 0.5f;
+            if (ObjectHandler.player1.sweatlevel > 3000) ObjectHandler.player1.sweatlevel -= 0.8f;
+            if (ObjectHandler.player1.sweatlevel > 1000) ObjectHandler.player1.sweatlevel -= 0.3f;
             if (ObjectHandler.player1.sweatlevel > 1) ObjectHandler.player1.sweatlevel -= 0.05f;
             ObjectHandler.player2.sweatlevel += ObjectHandler.player2.carry/2.0f;
-            if (ObjectHandler.player2.sweatlevel > 3000) ObjectHandler.player2.sweatlevel -= 1.5f;
-            if (ObjectHandler.player2.sweatlevel > 1000) ObjectHandler.player2.sweatlevel -= 0.5f;
+            if (ObjectHandler.player2.sweatlevel > 3000) ObjectHandler.player2.sweatlevel -= 0.8f;
+            if (ObjectHandler.player2.sweatlevel > 1000) ObjectHandler.player2.sweatlevel -= 0.3f;
             if (ObjectHandler.player2.sweatlevel > 1) ObjectHandler.player2.sweatlevel -= 0.05f;
         }
 
