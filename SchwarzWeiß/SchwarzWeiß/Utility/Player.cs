@@ -258,7 +258,7 @@ namespace SchwarzWeiß
         void bombHasBeenPlanted(RenderWindow win)
         {
             
-            if (Keyboard.IsKeyPressed(Keyboard.Key.LControl) && weaponnr == 2)
+            if ((Keyboard.IsKeyPressed(Keyboard.Key.LControl) || Keyboard.IsKeyPressed(Keyboard.Key.RControl)) && weaponnr == 2)
             {
                 Traps p = new Traps(sprite.Position);
                 ObjectHandler.traplist.Add(p);

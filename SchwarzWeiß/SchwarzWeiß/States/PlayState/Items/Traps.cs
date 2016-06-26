@@ -19,7 +19,9 @@ namespace SchwarzWeiß
     
         Clock clock;
         Clock stunclockPlayer1;
+        Clock stunclockPlayer2;
         float player1speed;
+        float player2speed;
         bool isaktiv;
        public Traps(Vector2f pos)
         {
@@ -28,7 +30,10 @@ namespace SchwarzWeiß
             clock = new Clock();
             stunclockPlayer1 = new Clock();
             stunclockPlayer1.Restart();
-            float player1speed = 0;
+            stunclockPlayer2 = new Clock();
+            stunclockPlayer2.Restart();
+            player1speed = 0;
+            player2speed = 0;
             clock.Restart();
             isAlive = true;
             texture = new Texture("assets/Falle.png");
@@ -47,6 +52,12 @@ namespace SchwarzWeiß
                     player1speed = 0;
                     isAlive = false;
                 }
+                if (ObjectHandler.player2.speed == 0 && stunclockPlayer2.ElapsedTime.AsSeconds() > 2)
+                {
+                    ObjectHandler.player2.speed = player2speed;
+                    player2speed = 0;
+                    isAlive = false;
+                }
             }
             else
             {
@@ -57,6 +68,13 @@ namespace SchwarzWeiß
                         player1speed = ObjectHandler.player1.speed;
                         ObjectHandler.player1.speed = 0;
                         stunclockPlayer1.Restart();
+                        isaktiv = true;
+                    }
+                    if (Collision<Traps, Player>.CheckColission(this, ObjectHandler.player2))
+                    {
+                        player2speed = ObjectHandler.player2.speed;
+                        ObjectHandler.player2.speed = 0;
+                        stunclockPlayer2.Restart();
                         isaktiv = true;
                     }
                 }
