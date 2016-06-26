@@ -121,6 +121,7 @@ namespace SchwarzWeiß
             Vector2f rightTop = sprite.Position + new Vector2f(sprite.Texture.Size.X, 0) + nextMove;
             Vector2f leftBottom = sprite.Position + new Vector2f(0, sprite.Texture.Size.Y) + nextMove;
             Vector2f RightBottom = sprite.Position + (Vector2f)sprite.Texture.Size + nextMove;
+            Vector2f size = (Vector2f)sprite.Texture.Size / 2;
 
             /*
             if(!ObjectHandler.map.walkable(leftTop) && !ObjectHandler.map.walkable(rightTop))
@@ -148,7 +149,11 @@ namespace SchwarzWeiß
             if (ObjectHandler.map.walkable(leftTop)
                 && ObjectHandler.map.walkable(leftBottom)
                 && ObjectHandler.map.walkable(rightTop)
-                && ObjectHandler.map.walkable(RightBottom))
+                && ObjectHandler.map.walkable(RightBottom)
+                && ObjectHandler.map.walkable(leftTop + new Vector2f(size.X,0))
+                && ObjectHandler.map.walkable(leftBottom + new Vector2f(0,-size.Y))
+                && ObjectHandler.map.walkable(RightBottom + new Vector2f(-size.X,0))
+                && ObjectHandler.map.walkable(rightTop + new Vector2f(0,size.Y)))
             {
                 sprite.Position += moveDirection * currentspeed * gTime.Ellapsed.Milliseconds;
             }
